@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+  <title>HTML5 basic skeleton</title>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+      #progressbar{
+          background-color:grey;
+          
+      }
+      #progressbar>div{
+          background-color: orange;
+          width:0%;
+          height:20px;
+      }
+    </style>
+</head>
+<body>
+  <div id="wrapper">
+    <header>
+      Header
+    </header>
+    <nav>
+      Nav
+    </nav>
+      <div><em>create our own progress bar</em></div>
+      <div id="progressbar">
+         <div></div>
+      </div>
+      
+      
+   <div><em>use html5</em></div>
+    <section id="content">
+        <progress  max="100" value="0"  id="theprogress"></progress>
+       
+        
+    <footer>
+      Footer
+    </footer>
+  </div>   
+<script>
+    "use strict";
+$(document).ready(function(){           
+    var i=0;
+         var interval = setInterval(function(){
+               i=i+5;
+             i < 100 ? i = i + 5 : clearInterval(interval); 
+             $("#progressbar>div").css("width", i+"%");
+             $("progress").val(i);            
+         }, 1000);
+});
+   
+/***START:sort a given string. Each word in the String will contain a single number. This number is the position the word should have in the result.***/
+        
+  var S ="4of Fo1r pe6ople g3ood th5e t2";
+ 
+  function sort(str){
+      
+      var sorted = [],arrStr = [];
+      
+      arrStr = str.split(' ');
+      
+      for(var i=0 ; i<arrStr.length; i++){
+          for(var j=0; j< arrStr[i].length; j++){
+              var c = arrStr[i].charAt(j);
+               if (!isNaN(c)){      
+                  
+                  sorted[parseInt(c,10)-1] = arrStr[i];
+                  
+              }
+          }
+      }    
+      
+      return sorted.join(' ');
+  }    
+    
+// console.log(sort(S));    
+    
+ function  order(S){
+     var arr = S.split(' ');
+     
+    return arr.sort(function(a,b){
+         return a.match(/\d/)-b.match(/\d/);
+     }).join(' ');      
+ }
+ //console.log(order(S));
+    
+    /***END:sort a given string. Each word in the String will contain a single number. This number is the position the word should have in the result.***/
+
+   
+    // Write a program to find the frequency of all strings in an array
+//for ex var myArray=["a","b","c"] //output a:1 , b:1, c:1
+//var myArray=["a","b","c","a","b","c"] //output a:2 , b:2, c:2
+//var myArray=["a","b","c","a","a","b","c","b","c"]//output a:3 , b:3, c:3
+
+//solution
+/*    1. Create an empty object.
+2. For each letter in the text 
+    2a. If the letter is not a property of the object then add it with value=1
+    2b. If the letter is already a property of the object increment the count
+3. Return the object containing the letters and their frequencies
+*/
+
+function findFrequency(arr){
+    var Obj ={};
+    
+    for(var i=0; i<arr.length; i++){
+        if (Obj.hasOwnProperty(arr[i])){
+          Obj[arr[i]] ++;    
+        }else{
+          Obj[arr[i]] = 1;
+        }
+    }
+
+    for(var k in Obj) {
+        console.log(k + ":" + Obj[k]);
+    }    
+}
+
+findFrequency(["a","b","c","a","b","c","f"]);
+
+//input  " the2 Fo1r  4of g3ood th5e"
+//out put  "Fo1r the2 g3ood 4of th5e"
+function order(words){
+//  
+ var arr = words.split(' ');
+ var sorted =[];
+ 
+  for (var i=0; i<arr.length ; i++){
+      
+      
+      var index = parseInt(arr[i].match(/\d/)) -1;
+       sorted[index] = arr[i];     
+       
+  }
+ 
+  return sorted.join(' ');
+}
+
+ console.log( order("the2 Fo1r  4of g3ood th5e"));
+    
+</script>
+</body>
+</html>
